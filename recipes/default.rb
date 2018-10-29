@@ -11,6 +11,8 @@ if %w(ubuntu).include?(node['platform'])
   riemann_host = node['riemann']['client']['host']
   # Grab the services
   services = node['riemann']['client']['services']
+  # Standalone Gems
+  standalone_gems = node['riemann']['client']['stand_alone']
 
   # Install Ruby Dev
   package 'ruby-dev' do
@@ -27,16 +29,28 @@ if %w(ubuntu).include?(node['platform'])
     end
   end
 
+  # Manage any standalone gems
+  standalone_gems.each do |gem, action|
+    gem_package "riemann-#{gem.gsub('_', '-')}" do
+      action action.to_s.to_sym
+      ignore_failure true
+      gem_binary('/usr/bin/gem')
+      options('--no-rdoc --no-ri')
+    end
+  end
+
+  # Install the riemann client and tools gems
+
   # Loop over each service
   services.each do |service, act|
 
     # Format local vars
-    actions = [:create]
+    actions = []
     service_name = "riemann-#{service.gsub('_', '-')}"
 
     # Build the actions for this service
     act.each do |a|
-      actions << a.to_s
+      actions << a.to_s.to_sym
     end
 
     # Create the service unit
