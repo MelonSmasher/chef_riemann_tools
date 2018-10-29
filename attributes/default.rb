@@ -23,41 +23,146 @@ default['riemann']['client']['stand_alone']['resmon'] = :nothing
 
 # Control the core tools as services (https://docs.chef.io/resource_systemd_unit.html)
 # By default only the health service is enabled
-default['riemann']['client']['services']['apache_status'] = %i[create disable stop]
-default['riemann']['client']['services']['dir_files_count'] = %i[create disable stop]
-default['riemann']['client']['services']['freeswitch'] = %i[create disable stop]
-default['riemann']['client']['services']['memcached'] = %i[create disable stop]
-default['riemann']['client']['services']['proc'] = %i[create disable stop]
-default['riemann']['client']['services']['dir_space'] = %i[create disable stop]
-default['riemann']['client']['services']['haproxy'] = %i[create disable stop]
-default['riemann']['client']['services']['net'] = %i[create disable stop]
-default['riemann']['client']['services']['varnish'] = %i[create disable stop]
-default['riemann']['client']['services']['cloudant'] = %i[create disable stop]
-default['riemann']['client']['services']['diskstats'] = %i[create disable stop]
-default['riemann']['client']['services']['health'] = %i[create enable start]
-default['riemann']['client']['services']['nginx_status'] = %i[create disable stop]
-default['riemann']['client']['services']['zookeeper'] = %i[create disable stop]
-default['riemann']['client']['services']['consul'] = %i[create disable stop]
-default['riemann']['client']['services']['fd'] = %i[create disable stop]
-default['riemann']['client']['services']['kvminstance'] = %i[create disable stop]
-default['riemann']['client']['services']['ntp'] = %i[create disable stop]
-default['riemann']['client']['services']['portcheck'] = %i[create disable stop]
+default['riemann']['client']['services']['apache_status'] = {
+    :tags => ['apache'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['dir_files_count'] = {
+    :tags => ['dir_files_count'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['freeswitch'] = {
+    :tags => ['freeswitch'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['memcached'] = {
+    :tags => ['memcached'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['proc'] = {
+    :tags => ['proc'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['dir_space'] = {
+    :tags => ['dir_space'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['haproxy'] = {
+    :tags => ['haproxy'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['net'] = {
+    :tags => ['net'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['varnish'] = {
+    :tags => ['varnish'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['cloudant'] = {
+    :tags => ['cloudant'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['diskstats'] = {
+    :tags => ['diskstats'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['health'] = {
+    :tags => ['health'],
+    :actions => %i[create enable start]
+}
+default['riemann']['client']['services']['nginx_status'] = {
+    :tags => ['nginx_status'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['zookeeper'] = {
+    :tags => ['zookeeper'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['consul'] = {
+    :tags => ['consul'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['fd'] = {
+    :tags => ['fd'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['kvminstance'] = {
+    :tags => ['kvminstance'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['ntp'] = {
+    :tags => ['ntp'],
+    :actions => %i[create disable stop]
+}
+default['riemann']['client']['services']['portcheck'] = {
+    :tags => ['portcheck'],
+    :actions => %i[create disable stop]
+}
 
 # Control the standalone gems as services (https://docs.chef.io/resource_systemd_unit.html)
 # By default nothing is controlled
-default['riemann']['client']['services']['aws'] = %i[nothing]
-default['riemann']['client']['services']['elasticsearch'] = %i[nothing]
-default['riemann']['client']['services']['mesos'] = %i[nothing]
-default['riemann']['client']['services']['rabbitmq'] = %i[nothing]
-default['riemann']['client']['services']['docker'] = %i[nothing]
-default['riemann']['client']['services']['marathon'] = %i[nothing]
-default['riemann']['client']['services']['munin'] = %i[nothing]
-default['riemann']['client']['services']['riak'] = %i[nothing]
-default['riemann']['client']['services']['chronos'] = %i[nothing]
-default['riemann']['client']['services']['mongodb'] = %i[nothing]
-default['riemann']['client']['services']['postgresql'] = %i[nothing]
-default['riemann']['client']['services']['cassandra'] = %i[nothing]
-default['riemann']['client']['services']['mysql'] = %i[nothing]
-default['riemann']['client']['services']['hadoop'] = %i[nothing]
-default['riemann']['client']['services']['redis'] = %i[nothing]
-default['riemann']['client']['services']['resmon'] = %i[nothing]
+default['riemann']['client']['services']['aws'] = {
+    :tags => ['aws'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['elasticsearch'] = {
+    :tags => ['elasticsearch'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['mesos'] = {
+    :tags => ['mesos'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['rabbitmq'] = {
+    :tags => ['rabbitmq'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['docker'] = {
+    :tags => ['docker'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['marathon'] = {
+    :tags => ['marathon'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['munin'] = {
+    :tags => ['munin'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['riak'] = {
+    :tags => ['riak'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['chronos'] = {
+    :tags => ['chronos'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['mongodb'] = {
+    :tags => ['mongodb'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['postgresql'] = {
+    :tags => ['postgresql'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['cassandra'] = {
+    :tags => ['cassandra'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['mysql'] = {
+    :tags => ['mysql'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['hadoop'] = {
+    :tags => ['hadoop'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['redis'] = {
+    :tags => ['redis'],
+    :actions => %i[nothing]
+}
+default['riemann']['client']['services']['resmon'] = {
+    :tags => ['resmon'],
+    :actions => %i[nothing]
+}

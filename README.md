@@ -21,8 +21,14 @@ See the attributes file in the source for all available options.
       "host": "riemann.example.com",
       "services": {
         "health": ["enable", "start"],
-        "nginx_status": ["enable", "start"],
-        "apache_status": ["disable", "stop"]
+        "nginx_status": {
+          "tags": ["nginx_status", "nginx", "http"],
+          "actions": ["create", "enable", "start"]
+        },
+        "apache_status": {
+          "tags": ["apache_status", "apache", "http"],
+          "actions": ["create", "disable", "stop"]
+        }
       }
     }
   }

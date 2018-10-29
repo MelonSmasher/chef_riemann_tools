@@ -42,15 +42,21 @@ if %w(ubuntu).include?(node['platform'])
   # Install the riemann client and tools gems
 
   # Loop over each service
-  services.each do |service, act|
+  services.each do |service, options|
 
     # Format local vars
     actions = []
+    tags = ''
     service_name = "riemann-#{service.gsub('_', '-')}"
 
     # Build the actions for this service
-    act.each do |a|
+    options[:actions].each do |a|
       actions << a.to_s.to_sym
+    end
+
+    # Build the tags for this service
+    options[:tags].each do |t|
+      tags = "#{tags} --tag \"#{t}\""
     end
 
     # Create the service unit
@@ -61,7 +67,7 @@ if %w(ubuntu).include?(node['platform'])
         After=network.target
 
         [Service]
-        ExecStart=/usr/local/bin/#{service_name} --host #{riemann_host}
+        ExecStart=/usr/local/bin/#{service_name} --host #{riemann_host}#{tags}
         PidFile=/var/run/#{service_name}.pid
         Restart=on-failure
 
