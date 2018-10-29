@@ -28,7 +28,7 @@ if %w(ubuntu).include?(node['platform'])
   end
 
   # Loop over each service
-  services.each_with_index do |act, service|
+  services.each do |service, act|
 
     # Format local vars
     actions = [:create]
