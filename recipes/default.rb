@@ -53,7 +53,7 @@ if %w(ubuntu).include?(node['platform'])
         Restart=on-failure
 
         [Install]
-        Alias=#{service_name}.service
+        Alias=chef-#{service_name}.service
       EOU
       action actions
     end
