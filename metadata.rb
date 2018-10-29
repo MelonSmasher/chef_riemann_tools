@@ -5,7 +5,7 @@ license 'MIT'
 description 'Allows you to configure the riemann tools gem as individual services.'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 chef_version ">= 12.11" if respond_to?(:chef_version)
-version '0.1.2'
+version '0.1.3'
 %w( ubuntu ).each do |os|
   supports os
 end

@@ -47,8 +47,7 @@ if %w(ubuntu).include?(node['platform'])
         After=network.target
 
         [Service]
-        HOST=--host #{riemann_host}
-        ExecStart=/usr/local/bin/#{service_name} $HOST
+        ExecStart=/usr/local/bin/#{service_name} --host #{riemann_host}
         PidFile=/var/run/#{service_name}.pid
         Restart=on-failure
 
